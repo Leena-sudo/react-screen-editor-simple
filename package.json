@@ -13,6 +13,11 @@
     "test:coverage": "umi-test --coverage",
     "prepublishOnly": "npm run build"
   },
+  "homepage": "https://leena-sudo.github.io/react-screen-editor-simple",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Leena-sudo/react-screen-editor-simple.git"
+  },
   "files": [
     "dist"
   ],

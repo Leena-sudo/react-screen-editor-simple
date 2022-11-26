@@ -2,14 +2,14 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   title: 'react-screen-editor-simple',
-  favicon: '/react-screen-cut-simple/editor_logo.png',
-  logo: '/react-screen-cut-simple/editor_logo.png',
+  favicon: '/react-screen-editor-simple/editor_logo.png',
+  logo: '/react-screen-editor-simple/editor_logo.png',
   outputPath: 'docs-dist',
   alias: {
     src: './src',
   },
-  base: '/react-screen-cut-simple/',
-  publicPath: '/react-screen-cut-simple/',
+  base: '/react-screen-editor-simple/',
+  publicPath: '/react-screen-editor-simple/',
   icons: {
     entry: './src/ImageEditor/assets',
   },
