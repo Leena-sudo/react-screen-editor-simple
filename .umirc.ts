@@ -5,11 +5,14 @@ export default defineConfig({
   favicon: '/react-screen-cut-simple/editor_logo.png',
   logo: '/react-screen-cut-simple/editor_logo.png',
   outputPath: 'docs-dist',
+  alias: {
+    src: './src',
+  },
   base: '/react-screen-cut-simple/',
   publicPath: '/react-screen-cut-simple/',
-  // icons: {
-  //   entry: './src/ImageEditor/assets',
-  // },
+  icons: {
+    entry: './src/ImageEditor/assets',
+  },
   apiParser: {
     propFilter: {
       // 是否忽略从 node_modules 继承的属性，默认值为 false

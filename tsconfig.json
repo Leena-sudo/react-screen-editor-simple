@@ -4,10 +4,16 @@
     "module": "esnext",
     "moduleResolution": "node",
     "jsx": "react",
+    "baseUrl": "./",
     "esModuleInterop": true,
     "types": ["jest"],
     "strict": true,
     "skipLibCheck": true,
-    "declaration": true
+    "declaration": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"],
+      "@icons/*": ["src/.umi/plugin-svgs"]
+    }
   }
 }
