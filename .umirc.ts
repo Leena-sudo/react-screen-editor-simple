@@ -2,6 +2,7 @@ import { defineConfig } from 'dumi';
 const path = require('path');
 
 export default defineConfig({
+  mode: 'doc',
   title: 'react-screen-editor-simple',
   favicon: '/react-screen-editor-simple/editor_logo.png',
   logo: '/react-screen-editor-simple/editor_logo.png',

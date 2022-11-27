@@ -47,15 +47,15 @@
     "umi-plugin-icons": "^0.1.1"
   },
   "devDependencies": {
-    "commitizen": "^4.2.5",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^13.0.0",
     "@types/jest": "^27.0.3",
     "@umijs/fabric": "^3.0.0",
     "@umijs/test": "^3.0.5",
+    "commitizen": "^4.2.5",
     "cz-conventional-changelog": "^3.3.0",
     "dumi": "^1.1.0",
-    "father": "^4.0.0-rc.2",
+    "father":"^4.1.0",
     "father-build": "^1.22.5",
     "gh-pages": "^4.0.0",
     "html2canvas": "^1.4.1",
@@ -63,6 +63,14 @@
     "prettier": "^2.2.1",
     "yorkie": "^2.0.0"
   },
+  "peerDependencies": {
+		"react": "^16.8.0 || ^17.x || ^18.x",
+		"react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+	},
+	"engines": {
+		"node": ">=16",
+		"npm": ">=8"
+	},
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"

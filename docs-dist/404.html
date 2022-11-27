@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/react-screen-editor-simple/editor_logo.png"
+    />
+    <style>
+      .anticon {
+        display: inline-block;
+        color: inherit;
+        font-style: normal;
+        line-height: 0;
+        text-align: center;
+        text-transform: none;
+        vertical-align: -0.125em;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .anticon > * {
+        line-height: 1;
+      }
+
+      .anticon svg {
+        display: inline-block;
+      }
+
+      .anticon::before {
+        display: none;
+      }
+
+      .anticon .anticon-icon {
+        display: block;
+      }
+
+      .anticon[tabindex] {
+        cursor: pointer;
+      }
+
+      .anticon-spin::before,
+      .anticon-spin {
+        display: inline-block;
+        -webkit-animation: loadingCircle 1s infinite linear;
+        animation: loadingCircle 1s infinite linear;
+      }
+
+      @-webkit-keyframes loadingCircle {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes loadingCircle {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/react-screen-editor-simple/umi.css" />
+    <script>
+      window.routerBase = "/react-screen-editor-simple/";
+    </script>
+    <script>
+      //! umi version: 3.5.35
+    </script>
+    <script>
+      !(function () {
+        var e =
+            navigator.cookieEnabled && void 0 !== window.localStorage
+              ? localStorage.getItem("dumi:prefers-color")
+              : "auto",
+          o = window.matchMedia("(prefers-color-scheme: dark)").matches,
+          t = ["light", "dark", "auto"];
+        document.documentElement.setAttribute(
+          "data-prefers-color",
+          e === t[2] ? (o ? t[1] : t[0]) : t.indexOf(e) > -1 ? e : t[0]
+        );
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="/react-screen-editor-simple/umi.js"></script>
+  </body>
+</html>
