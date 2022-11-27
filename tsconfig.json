@@ -12,8 +12,8 @@
     "declaration": true,
     "paths": {
       "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"]
-      // "@icons/*": ["src/.umi/plugin-svgs"]
+      "@@/*": ["src/.umi/*"],
+      "@icons/*": ["src/.umi/plugin-svgs"]
     }
   }
 }

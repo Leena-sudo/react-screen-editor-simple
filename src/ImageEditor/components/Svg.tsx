@@ -1,18 +1,17 @@
-// import {
-//   CircleAssets,
-//   CloseAssets,
-//   DownloadAssets,
-//   MosaicAssets,
-//   PenAssets,
-//   RectAssets,
-//   RevokeAssets,
-//   RightAssets,
-//   TextAssets,
-// } from '@icons';
+import {
+  CircleOutlined,
+  CloseOutlined,
+  DownloadOutlined,
+  MosaicOutlined,
+  PenOutlined,
+  RectOutlined,
+  RevokeOutlined,
+  RightOutlined,
+  TextOutlined,
+} from '@icons';
 
 import classNames from 'classnames';
 import React from 'react';
-
 interface Props {
   type?: string;
   pluginName: string;
@@ -21,47 +20,46 @@ interface Props {
 const Svg: React.FC<Props> = ({ type, pluginName }) => {
   const renderIcon = {
     rect: (
-      <RectAssets
+      <RectOutlined
         className={classNames('tools-icon', {
           'tool-selected': type === pluginName,
         })}
       />
     ),
     circle: (
-      <CircleAssets
+      <CircleOutlined
         className={classNames('tools-icon', {
           'tool-selected': type === pluginName,
         })}
       />
     ),
     pen: (
-      <PenAssets
+      <PenOutlined
         className={classNames('tools-icon', {
           'tool-selected': type === pluginName,
         })}
       />
     ),
     mosaic: (
-      <MosaicAssets
+      <MosaicOutlined
         className={classNames('tools-icon', {
           'tool-selected': type === pluginName,
         })}
       />
     ),
     text: (
-      <TextAssets
+      <TextOutlined
         className={classNames('tools-icon', {
           'tool-selected': type === pluginName,
         })}
       />
     ),
-    revoke: <RevokeAssets className={'tools-icon'} />,
-    close: <CloseAssets className="tools-icon" />,
-    download: <DownloadAssets className="tools-icon" />,
-    right: <RightAssets className="tools-icon" />,
+    revoke: <RevokeOutlined className={'tools-icon'} />,
+    close: <CloseOutlined className="tools-icon" />,
+    download: <DownloadOutlined className="tools-icon" />,
+    right: <RightOutlined className="tools-icon" />,
   };
   // @ts-ignore
-  // return <div>{renderIcon[pluginName]}</div>;
-  return <></>;
+  return <div>{renderIcon[pluginName]}</div>;
 };
 export default Svg;
