@@ -5,4 +5,4 @@ order: 100
 
 # API
 
-<API src='src/ImageEditor/index' hideTitle>
+<API src='src/index' hideTitle>

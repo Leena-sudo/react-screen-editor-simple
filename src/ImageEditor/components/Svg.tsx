@@ -1,14 +1,14 @@
-import {
-  CircleAssets,
-  CloseAssets,
-  DownloadAssets,
-  MosaicAssets,
-  PenAssets,
-  RectAssets,
-  RevokeAssets,
-  RightAssets,
-  TextAssets,
-} from '@icons';
+// import {
+//   CircleAssets,
+//   CloseAssets,
+//   DownloadAssets,
+//   MosaicAssets,
+//   PenAssets,
+//   RectAssets,
+//   RevokeAssets,
+//   RightAssets,
+//   TextAssets,
+// } from '@icons';
 
 import classNames from 'classnames';
 import React from 'react';
@@ -61,6 +61,7 @@ const Svg: React.FC<Props> = ({ type, pluginName }) => {
     right: <RightAssets className="tools-icon" />,
   };
   // @ts-ignore
-  return <div>{renderIcon[pluginName]}</div>;
+  // return <div>{renderIcon[pluginName]}</div>;
+  return <></>;
 };
 export default Svg;
