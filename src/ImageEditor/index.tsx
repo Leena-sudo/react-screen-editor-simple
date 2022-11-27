@@ -22,7 +22,6 @@ const ImageEditor: React.FC<ImageEditorBoxProps> = ({
   width,
   height,
   className,
-  holdSize,
   imageType,
   toolbar,
   onClose,

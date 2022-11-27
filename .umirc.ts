@@ -1,4 +1,5 @@
 import { defineConfig } from 'dumi';
+const path = require('path');
 
 export default defineConfig({
   title: 'react-screen-editor-simple',
@@ -11,7 +12,8 @@ export default defineConfig({
   base: '/react-screen-editor-simple/',
   publicPath: '/react-screen-editor-simple/',
   icons: {
-    entry: './src/ImageEditor/assets/svg',
+    entry: path.join(__dirname, './src/ImageEditor/assets/svg'),
+    alias: '@icons',
   },
   apiParser: {
     propFilter: {

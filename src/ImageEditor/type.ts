@@ -33,10 +33,10 @@ export interface BaseImageEditorBoxPropsProps {
   //  * @description  放大镜大小(x 10)
   //  */
   // locSize?: number;
-  /**
-   * @description 图片加载时, 占位 svg 宽高
-   */
-  holdSize?: { w: number | string; h: number | string };
+  // /**
+  //  * @description 图片加载时, 占位 svg 宽高
+  //  */
+  // holdSize?: { w: number | string; h: number | string };
   /**
    * @description 下载图片的类型
    */

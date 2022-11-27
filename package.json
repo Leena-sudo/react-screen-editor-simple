@@ -8,7 +8,7 @@
     "start": "dumi dev",
     "docs:build": "dumi build",
     "docs:deploy": "gh-pages -d docs-dist",
-    "build": "father build",
+    "build": "father-build",
     "deploy": "npm run docs:build && npm run docs:deploy",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "umi-test",
@@ -40,13 +40,14 @@
   "dependencies": {
     "@ant-design/colors": "^6.0.0",
     "classnames": "^2.3.2",
-    "commitizen": "^4.2.5",
     "eslint": "^8.27.0",
     "react": "^18.0.0",
     "react-dom": "^18.2.0",
-    "react-tiny-popover": "^7.2.0"
+    "react-tiny-popover": "^7.2.0",
+    "umi-plugin-icons": "^0.1.1"
   },
   "devDependencies": {
+    "commitizen": "^4.2.5",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^13.0.0",
     "@types/jest": "^27.0.3",
@@ -60,7 +61,6 @@
     "html2canvas": "^1.4.1",
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.1",
-    "umi-plugin-icons": "^0.1.1",
     "yorkie": "^2.0.0"
   },
   "config": {
