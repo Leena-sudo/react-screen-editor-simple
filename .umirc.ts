@@ -11,7 +11,7 @@ export default defineConfig({
   base: '/react-screen-editor-simple/',
   publicPath: '/react-screen-editor-simple/',
   icons: {
-    entry: 'src/ImageEditor/assets/svg',
+    entry: './src/ImageEditor/assets/svg',
   },
   apiParser: {
     propFilter: {

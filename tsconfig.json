@@ -8,12 +8,26 @@
     "esModuleInterop": true,
     "types": ["jest"],
     "strict": true,
+    "sourceMap": true,
     "skipLibCheck": true,
     "declaration": true,
+    "importHelpers": true,
     "paths": {
+      "@icons": ["src/.umi/plugin-icons/index.ts"],
       "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"],
-      "@icons/*": ["src/.umi/plugin-svgs"]
-    }
-  }
+      "@@/*": ["src/.umi/*"]
+    },
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "node_modules",
+    "lib",
+    "es",
+    "dist",
+    "typings",
+    "**/__test__",
+    "test",
+    "docs",
+    "tests"
+  ]
 }
