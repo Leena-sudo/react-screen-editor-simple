@@ -1,7 +1,9 @@
 {
-  "private": true,
+  "private": false,
   "name": "react-screen-editor-simple",
   "version": "1.0.0",
+  "author": "zn",
+  "license": "MIT",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
