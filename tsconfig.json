@@ -13,7 +13,6 @@
     "declaration": true,
     "importHelpers": true,
     "paths": {
-      "@icons": ["src/.umi/plugin-icons/index.ts"],
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
     },

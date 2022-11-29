@@ -43,8 +43,7 @@
     "eslint": "^8.27.0",
     "react": "^18.0.0",
     "react-dom": "^18.2.0",
-    "react-tiny-popover": "^7.2.0",
-    "umi-plugin-icons": "^0.1.1"
+    "react-tiny-popover": "^7.2.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.15.1",
@@ -55,7 +54,7 @@
     "commitizen": "^4.2.5",
     "cz-conventional-changelog": "^3.3.0",
     "dumi": "^1.1.0",
-    "father":"^4.1.0",
+    "father": "^4.1.0",
     "father-build": "^1.22.5",
     "gh-pages": "^4.0.0",
     "html2canvas": "^1.4.1",
@@ -64,13 +63,13 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-		"react": "^16.8.0 || ^17.x || ^18.x",
-		"react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
-	},
-	"engines": {
-		"node": ">=16",
-		"npm": ">=8"
-	},
+    "react": "^16.8.0 || ^17.x || ^18.x",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "engines": {
+    "node": ">=16",
+    "npm": ">=8"
+  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"

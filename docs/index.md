@@ -10,7 +10,7 @@ import { ImageEditor } from 'react-screen-editor-simple';
 export default () => {
   const [visible, setVisible] = useState(false);
   const [cropImg, setCropImg] = useState('');
-  const [width, setWidth] = useState(1000);
+  const [width, setWidth] = useState(800);
   const [height, setHeight] = useState(500);
 
   const handleScreenShot = (e: any) => {

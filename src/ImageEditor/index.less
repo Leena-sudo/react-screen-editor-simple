@@ -111,10 +111,17 @@
       cursor: pointer;
     }
     .tools-icon {
-      color: #fefefe;
-      font-size: 20px;
-      &.tool-selected {
-        color: green;
+      path {
+        fill: #cecece;
+        stroke: #cecece;
+        stroke-width: 6px;
+      }
+      &.tool-selected,
+      &:active {
+        path {
+          fill: #008000;
+          stroke: #008000;
+        }
       }
     }
   }

@@ -1,20 +1,15 @@
 import { defineConfig } from 'dumi';
 const path = require('path');
-
 export default defineConfig({
   mode: 'doc',
   title: 'react-screen-editor-simple',
   favicon: '/react-screen-editor-simple/editor_logo.png',
   logo: '/react-screen-editor-simple/editor_logo.png',
   outputPath: 'docs-dist',
-  alias: {
-    src: './src',
-  },
   base: '/react-screen-editor-simple/',
   publicPath: '/react-screen-editor-simple/',
-  icons: {
-    entry: path.join(__dirname, './src/ImageEditor/assets/svg'),
-    alias: '@icons',
+  alias: {
+    src: './src',
   },
   apiParser: {
     propFilter: {

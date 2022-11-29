@@ -236,11 +236,11 @@ const Canvas = forwardRef<any, Props>(
     };
     const handleToolsClose = () => {
       const canvasEle = combinedRef.current as HTMLCanvasElement;
-      const curActions = actionsRef.current.slice(0, 1);
+      const curActions = (actionsRef.current = []);
       canvasEle.onmousemove = null;
       document.onmouseup = null;
-      curActions.forEach((action) => action && action());
-      actionsRef.current = curActions;
+      // curActions.forEach((action) => action && action());
+      // actionsRef.current = curActions;
       setEdit(false);
       setSelect(false);
       setSize([0, 0]);
