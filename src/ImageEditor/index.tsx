@@ -2,10 +2,10 @@ import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 import Canvas from './components/Canvas';
 import { imageSize, point, prefixCls } from './constant';
+import './index.less';
 import type { ImageEditorBoxProps, RectInterface } from './type';
 import { ILoc, Status } from './type';
 
-import './index.less';
 import {
   drawCutCanvas,
   getLocalOffset,
@@ -13,6 +13,7 @@ import {
   setDrawEffect,
   setDrawImage,
   setImageSize,
+  setToolsLocPosition,
 } from './utils/utils';
 
 const image = new Image();
@@ -22,7 +23,6 @@ const ImageEditor: React.FC<ImageEditorBoxProps> = ({
   width,
   height,
   className,
-  imageType,
   toolbar,
   onClose,
   onDownload,
@@ -32,9 +32,9 @@ const ImageEditor: React.FC<ImageEditorBoxProps> = ({
   const [status, setStatus] = useState(Status.loading);
   const [size, setSize] = useState(imageSize);
   const [isDrag, setDrag] = useState(false);
-  const [isMove, setMove] = useState(false);
+  // const [isMove, setMove] = useState(false);
   const [isSelected, setSelected] = useState(false);
-  const [lastDraw, setLastDraw] = useState<() => void>(() => () => {});
+  const [lastDraw, setLastDraw] = useState<() => void>(() => () => ({}));
 
   // ref
   const dragRef = useRef<HTMLDivElement>(null);
@@ -44,9 +44,10 @@ const ImageEditor: React.FC<ImageEditorBoxProps> = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ratioRef = useRef<number>(1);
   const locRef = useRef<ILoc>({ x: 0, y: 0 });
+  const toolsRef = useRef<HTMLDivElement>(null);
 
   const handelDragMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (isDrag || isMove) {
+    if (isDrag) {
       return;
     }
     const container = magnifierContainerRef.current as HTMLDivElement;
@@ -65,17 +66,15 @@ const ImageEditor: React.FC<ImageEditorBoxProps> = ({
     });
   };
 
-  const handlePointDown = (type: Number, direction?: 'horizontal' | 'vertical') => {
+  const handlePointDown = (type: number, direction?: 'horizontal' | 'vertical') => {
     const containerEle = canvasContainerRef.current as HTMLDivElement;
     const dragEle = dragRef.current as HTMLDivElement;
     const canvas = canvasRef.current as HTMLCanvasElement;
     const canvasRect = canvas.getBoundingClientRect() as RectInterface;
 
     const antiPoint = {
-      // @ts-ignore
-      x: canvasRect[point[type][0] as keyof typeof RectInterface],
-      // @ts-ignore
-      y: canvasRect[point[type][1] as keyof typeof RectInterface],
+      x: canvasRect[point[type][0]],
+      y: canvasRect[point[type][1]],
     };
 
     const curOffset = getLocalOffset(dragEle, antiPoint.x, antiPoint.y);
@@ -120,7 +119,6 @@ const ImageEditor: React.FC<ImageEditorBoxProps> = ({
 
   useEffect(() => {
     image.crossOrigin = 'anonymous';
-    // @ts-ignore
     image.src = src;
   }, [src]);
 
@@ -182,6 +180,7 @@ const ImageEditor: React.FC<ImageEditorBoxProps> = ({
     const canvas = canvasRef.current as HTMLCanvasElement;
     const context = canvas.getContext('2d') as CanvasRenderingContext2D;
     const containerEle = canvasContainerRef.current as HTMLDivElement;
+    const toolsEle = toolsRef.current as HTMLDivElement;
     canvas.style.cursor = 'move';
 
     if (isSelected) {
@@ -192,19 +191,15 @@ const ImageEditor: React.FC<ImageEditorBoxProps> = ({
 
     if (isDrag) {
       const canvasmove = (event: MouseEvent) => {
-        event.stopPropagation();
         event.preventDefault();
 
         const canvasRect = canvas.getBoundingClientRect();
         const { width: boxW, height: boxH } = containerEle.getBoundingClientRect();
-
         const ratio = ratioRef.current;
         const curLoc = getLocalOffset(dragEle, event.clientX, event.clientY);
         const { x, y } = locRef.current;
         const disOffet = {
-          // @ts-ignore
           x: curLoc.x - x + parseFloat(containerEle.style.left || 0),
-          // @ts-ignore
           y: curLoc.y - y + parseFloat(containerEle.style.top || 0),
         };
 
@@ -224,7 +219,7 @@ const ImageEditor: React.FC<ImageEditorBoxProps> = ({
         containerEle.style.top = `${disOffet.y}px`;
         locRef.current = curLoc;
         const curRect = [disOffet.x, disOffet.y, canvasRect.width, canvasRect.height];
-
+        setToolsLocPosition(canvas, toolsEle, dragEle);
         setDrawImage({
           image,
           context,
@@ -262,6 +257,7 @@ const ImageEditor: React.FC<ImageEditorBoxProps> = ({
             <Canvas
               ref={canvasRef}
               isDrag={isDrag}
+              toolsRef={toolsRef}
               ratio={ratioRef.current}
               lastDraw={lastDraw}
               toolbar={toolbar}

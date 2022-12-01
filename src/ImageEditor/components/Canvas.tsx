@@ -1,7 +1,6 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { initInfo, prefixCls } from '../constant';
 import type { ILoc } from '../type';
-import { useCombinedRefs } from '../utils/utils';
 import SvgDraw from './SvgDraw';
 import ToolBar from './Toolbar';
 
@@ -13,26 +12,30 @@ import {
   drawText,
   getLocalOffset,
   getTimeStamp,
+  useCombinedRefs,
 } from '../utils/utils';
 
 interface Props {
   isDrag: boolean;
   ratio: number;
+  toolsRef: React.RefObject<HTMLDivElement>;
   imageType?: string;
-  handlePointDown: any;
-  toolbar: any;
-  handelSelected: any;
+  handlePointDown: unknown;
+  toolbar: unknown;
+  handelSelected: unknown;
   lastDraw: () => void;
+  // eslint-disable-next-line no-unused-vars
   handleClose?: (close?: () => void) => void;
   handleDownload?: (close?: () => void) => void;
   handleConfirm?: (url?: string, close?: () => void) => void;
 }
 
-const Canvas = forwardRef<any, Props>(
+const Canvas = forwardRef<unknown, Props>(
   (
     {
       isDrag,
       toolbar,
+      toolsRef,
       imageType,
       ratio,
       lastDraw,
@@ -50,7 +53,7 @@ const Canvas = forwardRef<any, Props>(
     const actionsRef = useRef<any[]>([]);
     const downLoc = useRef<ILoc>({ x: 0, y: 0 });
     const preLoc = useRef<ILoc>({ x: 0, y: 0 });
-    const wordRef = useRef<String>('');
+    const wordRef = useRef<string>('');
     const curInfo = useRef<{ size: number; color: string }>(initInfo);
     const iptRef = useRef<any>(null);
     const pointListRef = useRef<ILoc[]>([]);
@@ -139,7 +142,7 @@ const Canvas = forwardRef<any, Props>(
         };
       };
     };
-    const handleDrawPen = (curType: string) => {
+    const handleDrawPen = () => {
       const canvasEle = combinedRef.current as HTMLCanvasElement;
       let lastLoc: ILoc;
       canvasEle.onmousedown = (event) => {
@@ -175,7 +178,7 @@ const Canvas = forwardRef<any, Props>(
         };
       };
     };
-    const handleDrawText = (curType: string) => {
+    const handleDrawText = () => {
       const _info = curInfo.current;
       const canvasEle = combinedRef.current as HTMLCanvasElement;
       canvasEle.onmousedown = (event) => {
@@ -199,11 +202,10 @@ const Canvas = forwardRef<any, Props>(
         };
       };
     };
-    const handleDrawMosaic = (curType: string) => {
+    const handleDrawMosaic = () => {
       const canvasEle = combinedRef.current as HTMLCanvasElement;
-      canvasEle.onmousedown = (event) => {
+      canvasEle.onmousedown = () => {
         setEdit(true);
-        const startLoc = getLocalOffset(canvasEle, event.clientX, event.clientY);
         canvasEle.onmousemove = (moveEvent) => {
           const curLoc = getLocalOffset(canvasEle, moveEvent.clientX, moveEvent.clientY);
           drawMosaic(canvasEle, curLoc, infoRef.current.size * ratio, ratio);
@@ -236,7 +238,7 @@ const Canvas = forwardRef<any, Props>(
     };
     const handleToolsClose = () => {
       const canvasEle = combinedRef.current as HTMLCanvasElement;
-      const curActions = (actionsRef.current = []);
+      // const curActions = (actionsRef.current = []);
       canvasEle.onmousemove = null;
       document.onmouseup = null;
       // curActions.forEach((action) => action && action());
@@ -372,6 +374,7 @@ const Canvas = forwardRef<any, Props>(
           <ToolBar
             info={info}
             type={type}
+            ref={toolsRef}
             setInfo={setInfo}
             toolbar={toolbar}
             handelChange={handleToolChange}

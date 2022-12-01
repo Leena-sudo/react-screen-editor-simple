@@ -10,8 +10,8 @@ module.exports = {
       },
     },
   },
-  plugins: ['github', 'regexp', '@typescript-eslint', 'jest'],
-  extends: ['plugin:@typescript-eslint/recommended', 'eslint:recommended'],
+  plugins: ['@typescript-eslint'],
+  extends: ['plugin:prettier/recommended', 'plugin:@typescript-eslint/recommended'],
   rules: {
     'prettier/prettier': [
       'error',

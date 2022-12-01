@@ -6,10 +6,12 @@ build
 *.local
 *.md
 .*.js
+# *.ts
 *.config.js
 *.config.ts
 *.json
 *.test.tsx
+.fatherrc.ts
 es
 lib
 docs

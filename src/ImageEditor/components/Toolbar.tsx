@@ -1,8 +1,9 @@
 import classNames from 'classnames';
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { ArrowContainer, Popover } from 'react-tiny-popover';
 import { actionBar, plugins, prefixCls } from '../constant';
 import { PluginsInterface } from '../type';
+import { useCombinedRefs } from '../utils/utils';
 import Stroke from './Stroke';
 import Svg from './Svg';
 interface Props {
@@ -15,6 +16,8 @@ interface Props {
 
 const ToolBar = forwardRef<any, Props>(({ info, type, setInfo, toolbar, handelChange }, ref) => {
   const [selected, setSelected] = useState('');
+  const toolsRef = React.useRef(null);
+  const combinedRef = useCombinedRefs(ref, toolsRef) as any;
 
   const handleClick = (e: any, curType: string) => {
     handelChange(curType);
@@ -28,7 +31,7 @@ const ToolBar = forwardRef<any, Props>(({ info, type, setInfo, toolbar, handelCh
         align="start"
         key={plugin.name}
         isOpen={selected === plugin.name}
-        content={({ position, childRect, popoverRect }) => (
+        content={({ childRect, popoverRect }) => (
           <ArrowContainer
             position={plugin.positions}
             childRect={childRect}
@@ -58,14 +61,11 @@ const ToolBar = forwardRef<any, Props>(({ info, type, setInfo, toolbar, handelCh
     );
   };
 
-  useEffect(() => {}, [toolbar]);
   return (
-    <div className={`${prefixCls}-tools`}>
+    <div className={`${prefixCls}-tools`} ref={combinedRef}>
       {toolbar.items.map((item) => {
         return Object.keys(plugins).map((plugin) => {
-          // @ts-ignore
           if (plugins[plugin as keyof typeof PluginsInterface].name === item) {
-            // @ts-ignore
             return renderPlugin(plugins[plugin as keyof typeof PluginsInterface]);
           }
         });

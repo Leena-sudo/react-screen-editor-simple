@@ -43,7 +43,7 @@ export const setImageSize = (
  */
 export const getLocalOffset = (ele: HTMLElement, x: number, y: number, size = 10) => {
   const relative = ele.getBoundingClientRect();
-  const { top, bottom, left, right, height, width } = relative;
+  const { top, bottom, left, right } = relative;
 
   let curX: number;
   let curY: number;
@@ -179,17 +179,15 @@ export const useCombinedRefs = (...refs: any) => {
  */
 export const setDrawEffect = ({
   curRect,
-  lastOffset,
   containerEle,
   canvas,
   ratioRef,
   image,
 }: {
-  curRect: any;
-  lastOffset?: ILoc;
+  curRect: unknown;
   containerEle: HTMLDivElement;
   canvas: HTMLCanvasElement;
-  ratioRef?: React.RefObject<any>;
+  ratioRef?: React.RefObject<unknown>;
   image: HTMLImageElement;
 }) => {
   const context = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -236,7 +234,7 @@ export const setDrawImage = ({
 }: {
   image: HTMLImageElement;
   context: CanvasRenderingContext2D;
-  curRect: any;
+  curRect: unknown;
   ratio: number;
 }) => {
   const [x, y, w, h] = curRect;
@@ -382,7 +380,7 @@ export const drawMosaic = (ele: HTMLCanvasElement, curLoc: ILoc, size: number, r
   const endCol = Math.min(h, Math.ceil(y / size));
   while (startCol < endCol) {
     let row = startRow;
-    let sum = { r: 0, g: 0, b: 0 };
+    const sum = { r: 0, g: 0, b: 0 };
     while (row < endRow) {
       row += 1;
       const index = startCol * w + row;
@@ -414,9 +412,54 @@ export const drawMosaic = (ele: HTMLCanvasElement, curLoc: ILoc, size: number, r
 export const rgbToHex = (r: number, g: number, b: number) => {
   return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
 };
-const componentToHex = (c: any) => {
-  var hex = c.toString(16);
+const componentToHex = (c: unknown) => {
+  const hex = c.toString(16);
   return hex.length == 1 ? '0' + hex : hex;
+};
+/**
+ *setToolsLocPosition 设置工具栏位置
+ * @param canvasEle
+ * @param toolsEle
+ * @param toolsLoc
+ * @param parentH
+ */
+export const setToolsLocPosition = (
+  canvasEle: HTMLCanvasElement,
+  toolsEle: HTMLDivElement,
+  dragEle: HTMLDivElement,
+) => {
+  const canvasRect = canvasEle.getBoundingClientRect();
+  const toolsRect = toolsEle.getBoundingClientRect();
+  const dragRect = dragEle.getBoundingClientRect();
+  const gapSpace = 16;
+  const disTop = canvasRect.top - dragRect.top;
+  const disLeft = canvasRect.left - dragRect.left;
+  const toolsHeight = gapSpace + toolsRect.height;
+
+  if (dragRect.height - disTop - canvasRect.height < toolsHeight && disTop > toolsHeight) {
+    //底部高度不够顶部高度够
+    Object.assign(toolsEle.style, {
+      top: `${-gapSpace - toolsRect.height}px`,
+      bottom: 'unset',
+    });
+  } else if (dragRect.height - disTop - canvasRect.height < toolsHeight && disTop < toolsHeight) {
+    //底部和顶部高度都不够
+    Object.assign(toolsEle.style, {
+      top: 'unset',
+      bottom: `${gapSpace}px`,
+    });
+  } else if (dragRect.height - disTop - canvasRect.height > toolsHeight) {
+    Object.assign(toolsEle.style, {
+      top: 'unset',
+      bottom: `${-gapSpace - toolsRect.height}px`,
+    });
+  }
+
+  if (disLeft <= toolsRect.width - canvasRect.width) {
+    Object.assign(toolsEle.style, { left: '0px', right: 'unset' });
+  } else {
+    Object.assign(toolsEle.style, { right: '0px', left: 'unset' });
+  }
 };
 /**
  * getTimeStamp
